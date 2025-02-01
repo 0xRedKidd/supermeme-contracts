@@ -7,7 +7,7 @@ import "../src/Factories/RefundableFactory.sol";
 import "../src/SuperMemeDegenBondingCurve.sol";
 import "../src/Factories/SuperMemeRegistry.sol";
 import "../src/SuperMemeRevenueCollector.sol";
-import "../src/Factories/CommunityLockFactory.sol";
+
 import "../src/SuperMemeToken/SuperMeme.sol";
 import "../src/SuperMemeToken/SuperMemePublicStaking.sol";
 import "../src/SuperMemeToken/SuperMemeTreasuryVesting.sol";
@@ -26,7 +26,6 @@ contract TGETest is Test {
     SuperMemeDegenBondingCurve public degenbondingcurve;
     SuperMemeRegistry public registry;
     SuperMemeRevenueCollector public revenueCollector;
-    CommunityLockFactory public communityLockFactory;
 
     SuperMemePublicStaking public publicStaking;
     SuperMemeTreasuryVesting public treasuryVesting;
@@ -132,22 +131,22 @@ contract TGETest is Test {
         degenFactory = new DegenFactory(address(registry));
         refundableFactory = new RefundableFactory(address(registry));
         lockingCurveFactory = new LockingCurveFactory(address(registry));
-        communityLockFactory = new CommunityLockFactory(address(registry));
+  
 
         degenFactory.setRevenueCollector(address(revenueCollector));
         refundableFactory.setRevenueCollector(address(revenueCollector));
         lockingCurveFactory.setRevenueCollector(address(revenueCollector));
-        communityLockFactory.setRevenueCollector(address(revenueCollector));
+ 
 
         degenFactory.setCreateTokenRevenue(createTokenRevenue);
         refundableFactory.setCreateTokenRevenue(createTokenRevenue);
         lockingCurveFactory.setCreateTokenRevenue(createTokenRevenue);
-        communityLockFactory.setCreateTokenRevenue(createTokenRevenue);
+
 
         registry.setFactory(address(degenFactory));
         registry.setFactory(address(refundableFactory));
         registry.setFactory(address(lockingCurveFactory));
-        registry.setFactory(address(communityLockFactory));
+
 
         degenbondingcurve = new SuperMemeDegenBondingCurve(
             "SuperMeme",

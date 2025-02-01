@@ -1,0 +1,12 @@
+//we need to build a new curve for ai agent.
+//curve will be spr/aiagent and will collect revenue as spr/aiagent
+//first we need to figure out the curve. we will start by writing the tests for the curve and present it. it's better if it's adjustable
+//after curve is built, we will make sure buy sell functions are working properly.
+
+//than we move on to the revenue collector and factory contracts and make sure they are compatiable with the new curve.
+
+//after buy sell we make sure dex migration is valid and working properly.
+
+//we keep testing the curve and make sure it's working properly.
+
+//we handle subgraph.
