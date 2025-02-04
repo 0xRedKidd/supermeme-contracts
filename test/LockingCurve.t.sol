@@ -308,11 +308,11 @@ contract LockingCurve is Test {
             uint256 amount = 50000000;
             uint256 cost = lockingCurve.calculateCost(amount);
             uint256 nextLockTime = lockingCurve.calculateNextLockTime();
-            uint256 tax = cost / 100;
-            uint256 totalCost = cost + tax;
-            uint256 slippage = totalCost / 100;
-            uint256 totalCostWithSlippage = totalCost + slippage;
-            lockingCurve.buyTokens{value: totalCostWithSlippage}(
+  
+            uint256 totalCost = cost + cost / 100;
+            totalCost = totalCost + totalCost / 100;
+
+            lockingCurve.buyTokens{value: totalCost}(
                 amount
             );
             assertEq(lockingCurve.balanceOf(addresses[i]), amount * 10 ** 18);
@@ -331,8 +331,7 @@ contract LockingCurve is Test {
             uint256 remainingLockTime = (lockTime < block.timestamp)
                 ? 0
                 : lockTime - block.timestamp;
-            uint256 remaininLockTimeFromContract = lockingCurve
-                .checkRemainingLockTime(addresses[i]);
+            uint256 remaininLockTimeFromContract = lockingCurve.checkRemainingLockTime(addresses[i]);
             assertEq(remainingLockTime, remaininLockTimeFromContract);
             //log the remaining lock time for all users
             for (uint256 j = 0; j < 5; j++) {
